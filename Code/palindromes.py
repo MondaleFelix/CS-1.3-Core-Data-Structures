@@ -1,10 +1,11 @@
 #!python
 
 import string
+import re
 # Hint: Use these string constants to ignore capitalization and/or punctuation
-# string.ascii_lowercase is 'abcdefghijklmnopqrstuvwxyz'
-# string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-# string.ascii_letters is ascii_lowercase + ascii_uppercase
+string.ascii_lowercase is 'abcdefghijklmnopqrstuvwxyz'
+string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+string.ascii_letters is string.ascii_lowercase + string.ascii_uppercase
 
 
 def is_palindrome(text):
@@ -19,7 +20,23 @@ def is_palindrome(text):
 
 def is_palindrome_iterative(text):
     # TODO: implement the is_palindrome function iteratively here
-    pass
+
+    regex = re.compile('[^a-zA-Z]')
+    word = regex.sub("", text.lower())
+
+    left = 0
+    right = len(word) - 1
+
+    while left <= right:
+        if word[left] == word[right]:
+            left += 1
+            right -= 1
+        else: 
+            return False
+
+    return True 
+
+    # return False
     # once implemented, change is_palindrome to call is_palindrome_iterative
     # to verify that your iterative implementation passes all tests
 
@@ -46,4 +63,6 @@ def main():
 
 
 if __name__ == '__main__':
+     # test = is_palindrome_iterative("BB")
+     # print(test)
     main()
