@@ -41,16 +41,24 @@ def binary_search(array, item):
 
 
 def binary_search_iterative(array, item):
-    # TODO: implement binary search iteratively here
-    middle = len(array) // 2
+	# TODO: implement binary search iteratively here
+	# once implemented, change binary_search to call binary_search_iterative
+	# to verify that your iterative implementation passes all tests
+	left = 0
+	right = len(array) - 1
 
-    while middle > 1:
-        if array[middle] == item:
-            return middle
-        middle = middle // 2
+	while left <= right:
+		middle = left + ((right - left) // 2)
+		if array[middle] == item:
+			return middle
+		elif item < array[middle]:
+			right = middle - 1
+		elif item > array[middle]:
+			left = middle + 1
 
-    # once implemented, change binary_search to call binary_search_iterative
-    # to verify that your iterative implementation passes all tests
+	return None
+
+
 
 
 def binary_search_recursive(array, item, left=None, right=None):
