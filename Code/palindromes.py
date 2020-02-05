@@ -46,17 +46,18 @@ def is_palindrome_recursive(text, left=None, right=None):
     regex = re.compile('[^a-zA-Z]')
     word = regex.sub("", text.lower())
 
-    if left is None and right is None:
+    if left == None and right == None:
         left = 0
         right = len(word) - 1
 
-    if word[left] == word[right]:
+    if left >= right:
         return True
 
-    return False
+    if word[left] is not word[right]:
+        return False
+    else:
+        return is_palindrome_recursive(word, left + 1, right -1)
 
-    if left <= right:
-        return is_palindrome_recursive(text, left + 1, right -1)
     # once implemented, change is_palindrome to call is_palindrome_recursive
     # to verify that your iterative implementation passes all tests
 
