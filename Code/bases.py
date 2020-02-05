@@ -42,7 +42,7 @@ def encode(number, base):
     value = ""
     
     while number > 0:
-        
+
         # Divmod returns a tuple with the quotient and remainder
         number, remainder = divmod(number, base)
         
@@ -64,15 +64,9 @@ def convert(digits, base1, base2):
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base1 <= 36, 'base1 is out of range: {}'.format(base1)
     assert 2 <= base2 <= 36, 'base2 is out of range: {}'.format(base2)
-    # TODO: Convert digits from base 2 to base 16 (and vice versa)
-    # ...
-    # TODO: Convert digits from base 2 to base 10 (and vice versa)
-    # ...
-    # TODO: Convert digits from base 10 to base 16 (and vice versa)
-    # ...
-    # TODO: Convert digits from any base to any base (2 up to 36)
-    # ...
 
+    value = decode(digits,base1)
+    return encode(value, base2)
 
 def main():
     """Read command-line arguments and convert given digits between bases."""
