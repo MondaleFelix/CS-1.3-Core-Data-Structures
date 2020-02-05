@@ -21,6 +21,7 @@ def is_palindrome(text):
 def is_palindrome_iterative(text):
     # TODO: implement the is_palindrome function iteratively here
 
+    # Cleans text input to only lowercase letters
     regex = re.compile('[^a-zA-Z]')
     word = regex.sub("", text.lower())
 
@@ -43,9 +44,12 @@ def is_palindrome_iterative(text):
 
 def is_palindrome_recursive(text, left=None, right=None):
     # TODO: implement the is_palindrome function recursively here
+
+    # Cleans text input to only lowercase letters
     regex = re.compile('[^a-zA-Z]')
     word = regex.sub("", text.lower())
 
+    # Initializes a left and right pointer if none given
     if left == None and right == None:
         left = 0
         right = len(word) - 1
