@@ -37,12 +37,22 @@ def encode(number, base):
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # Handle unsigned numbers only for now
     assert number >= 0, 'number is negative: {}'.format(number)
-    # TODO: Encode number in binary (base 2)
-    # ...
-    # TODO: Encode number in hexadecimal (base 16)
-    # ...
-    # TODO: Encode number in any base (2 up to 36)
-    # ...
+
+
+    value = ""
+    
+    while number > 0:
+        
+        # Divmod returns a tuple with the quotient and remainder
+        number, remainder = divmod(number, base)
+        
+        # Returns characters if higher than 10
+        if remainder >= 10:
+            value += chr(remainder + 87)
+        else:
+            value += str(remainder)
+
+    return value[::-1]
 
 
 def convert(digits, base1, base2):
