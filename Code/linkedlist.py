@@ -109,6 +109,8 @@ class LinkedList(object):
             if node_index == index - 1:
                 new_node.next = current_node.next
                 current_node.next = new_node
+            node_index += 1
+            current_node = current_node.next
 
 
     def append(self, item):
@@ -170,6 +172,17 @@ class LinkedList(object):
         Worst case running time: ??? under what conditions? [TODO]"""
         # TODO: Find the node containing the given old_item and replace its
         # data with new_item, without creating a new node object
+
+
+        current_node = self.head
+
+        while current_node is not None:
+            if current_node.data == old_item:
+                current_node.data = new_item
+                return None
+            current_node = current_node.next
+        raise ValueError('Item not in list: {}'.format(old_item))
+
 
 
     def delete(self, item):
