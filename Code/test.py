@@ -1,30 +1,24 @@
+text = "bananas"
+pattern = "nas"
 
-# Converts digit to base 2
-def convert_to_decimal(binary):
-	digits = [int(i) for i in str(binary)]
-	digits.reverse()
+starting_index = 0
 
-	value = 0
-	exponent = 0
-	for i in digits:
-		value += i * exponent
-		if exponent == 0:
-			exponent = 1
-		else:
-			exponent *= 2
-	return value
+i = 0
+j = 0
 
-print(convert_to_decimal(11010))
+# B A N A N A S
+# N A S
 
+while i < len(text):
+	print(text[i],pattern[j])
+	if text[i] == pattern[j]:
+		j += 1
+		i += 1
+		if j == len(pattern):
+			return True
+	else:
+		starting_index += 1
+		i = starting_index
+		j = 0
 
-def convert_to_binary(decimal):
-	binary_number = []
-	while decimal is not 0:
-		binary_number.append(decimal%2)
-		decimal = decimal // 2 
-
-
-	binary_number.reverse()
-	print(binary_number)
-
-# convert_to_binary(150)
+return False
