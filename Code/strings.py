@@ -14,6 +14,9 @@ def contains(text, pattern):
     # B A N A N A S
     # N A S
 
+    if len(text) == 0 or len(pattern) == 0:
+    	return True
+
     while i < len(text):
     	print(text[i],pattern[j])
     	if text[i] == pattern[j]:
