@@ -79,6 +79,15 @@ class LinkedList(object):
         if not (0 <= index < self.size):
             raise ValueError('List index out of range: {}'.format(index))
         # TODO: Find the node at the given index and return its data
+        node_index = 0
+
+        current_node = self.head
+
+        while current_node is not None:
+            if node_index == index:
+                return current_node.data
+            node_index += 1
+            current_node = current_node.next
 
     def insert_at_index(self, index, item):
         """Insert the given item at the given index in this linked list, or
@@ -90,11 +99,24 @@ class LinkedList(object):
             raise ValueError('List index out of range: {}'.format(index))
         # TODO: Find the node before the given index and insert item after it
 
+        new_node = Node(item)
+
+        node_index = 0
+
+        current_node = self.head
+
+        while current_node is not None:
+            if node_index == index - 1:
+                new_node.next = current_node.next
+                current_node.next = new_node
+
+
     def append(self, item):
         """Insert the given item at the tail of this linked list.
         Best and worst case running time: ??? under what conditions? [TODO]"""
         # Create a new node to hold the given item
         new_node = Node(item)
+        self.size += 1
         # Check if this linked list is empty
         if self.is_empty():
             # Assign head to new node
@@ -105,11 +127,14 @@ class LinkedList(object):
         # Update tail to new node regardless
         self.tail = new_node
 
+
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
         Best and worst case running time: ??? under what conditions? [TODO]"""
         # Create a new node to hold the given item
         new_node = Node(item)
+        self.size += 1
+
         # Check if this linked list is empty
         if self.is_empty():
             # Assign tail to new node
@@ -145,13 +170,15 @@ class LinkedList(object):
         Worst case running time: ??? under what conditions? [TODO]"""
         # TODO: Find the node containing the given old_item and replace its
         # data with new_item, without creating a new node object
-        pass
+
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
         Best case running time: ??? under what conditions? [TODO]
         Worst case running time: ??? under what conditions? [TODO]"""
         # Start at the head node
+        self.size -= 1
+
         node = self.head
         # Keep track of the node before the one containing the given item
         previous = None
