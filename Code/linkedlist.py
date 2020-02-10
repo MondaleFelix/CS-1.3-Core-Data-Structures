@@ -57,6 +57,10 @@ class LinkedList(object):
     def length(self):
         """Return the length of this linked list by traversing its nodes.
         Best and worst case running time: ??? under what conditions? [TODO]"""
+
+        # Best case: O(1) If there is no nodes to count 
+        # Worst case: O(n) It would have to iterate n amount times to count the nodes
+
         # Node counter initialized to zero
         node_count = 0
         # Start at the head node
@@ -73,8 +77,11 @@ class LinkedList(object):
     def get_at_index(self, index):
         """Return the item at the given index in this linked list, or
         raise ValueError if the given index is out of range of the list size.
-        Best case running time: ??? under what conditions? [TODO]
-        Worst case running time: ??? under what conditions? [TODO]"""
+        Best case running time: O(1) If we are searching the first node of the linked
+        Worst case running time: O(n) If we are searching the last node of the list so we would have to iterate all the nodes to the end"""
+
+
+
         # Check if the given index is out of range and if so raise an error
         if not (0 <= index < self.size):
             raise ValueError('List index out of range: {}'.format(index))
@@ -92,8 +99,8 @@ class LinkedList(object):
     def insert_at_index(self, index, item):
         """Insert the given item at the given index in this linked list, or
         raise ValueError if the given index is out of range of the list size.
-        Best case running time: ??? under what conditions? [TODO]
-        Worst case running time: ??? under what conditions? [TODO]"""
+        Best case running time: O(1), If we are inserting a node at the head or tail
+        Worst case running time: O(n), If we are inserting at the second to last node so we would have iterate through the length of existing nodes"""
         # Check if the given index is out of range and if so raise an error
         if not (0 <= index <= self.size):
             raise ValueError('List index out of range: {}'.format(index))
@@ -120,6 +127,8 @@ class LinkedList(object):
     def append(self, item):
         """Insert the given item at the tail of this linked list.
         Best and worst case running time: ??? under what conditions? [TODO]"""
+        # Best case / Worst case: O(1) Since we have a pointer to the tail node, we do not need to interate through the length of the linkedlist
+
         # Create a new node to hold the given item
         new_node = Node(item)
         self.size += 1
@@ -136,7 +145,8 @@ class LinkedList(object):
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
-        Best and worst case running time: ??? under what conditions? [TODO]"""
+        Best and worst case running time: O(1) There is no need to iterate through the length of the array because we have the pointers to the head and tail node """
+
         # Create a new node to hold the given item
         new_node = Node(item)
         self.size += 1
@@ -172,8 +182,8 @@ class LinkedList(object):
     def replace(self, old_item, new_item):
         """Replace the given old_item in this linked list with given new_item
         using the same node, or raise ValueError if old_item is not found.
-        Best case running time: ??? under what conditions? [TODO]
-        Worst case running time: ??? under what conditions? [TODO]"""
+        Best case running time: O(1) If we are replacing the data found in the first node of the linked list
+        Worst case running time: O(n) If we are replacing the data in the last node of the lists, so we have to interate n amount of node"""
         # TODO: Find the node containing the given old_item and replace its
         # data with new_item, without creating a new node object
 
@@ -191,8 +201,8 @@ class LinkedList(object):
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
-        Best case running time: ??? under what conditions? [TODO]
-        Worst case running time: ??? under what conditions? [TODO]"""
+        Best case running time: O(1) If we are deleting head or tail node
+        Worst case running time: O(n) If we are deleting a node in the middle, having us to interate n amount of nodes"""
         # Start at the head node
         self.size -= 1
 
