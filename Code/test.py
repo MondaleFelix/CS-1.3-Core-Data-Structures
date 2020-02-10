@@ -10,15 +10,14 @@ j = 0
 # N A S
 
 while i < len(text):
-	print(text[i],pattern[j])
+	print(starting_index)
 	if text[i] == pattern[j]:
 		j += 1
 		i += 1
 		if j == len(pattern):
-			return True
+			print("mondale")
 	else:
 		starting_index += 1
 		i = starting_index
 		j = 0
 
-return False
