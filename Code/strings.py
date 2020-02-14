@@ -92,6 +92,7 @@ def find_all_indexes(text, pattern):
             if j == len(pattern):
                 j = 0
                 indicies.append(starting_index)
+                i = starting_index + 1
                 starting_index = i
         else:
             starting_index += 1
