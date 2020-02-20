@@ -112,11 +112,13 @@ class HashTable(object):
             # In this case, the given key's value is being updated
             # Remove the old key-value entry from the bucket first
             bucket.delete(entry)
+            self.size -= 1
         # Insert the new key-value entry into the bucket in either case
+        self.size += 1
         bucket.append((key, value))
         # TODO: Check if the load factor exceeds a threshold such as 0.75
-        # if self.load_factor() > 0.75:
-
+        if self.load_factor() > 0.75:
+        	self._resize()
         # ...
         # TODO: If so, automatically resize to reduce the load factor
         # ...
@@ -133,6 +135,7 @@ class HashTable(object):
         if entry is not None:  # Found
             # Remove the key-value entry from the bucket
             bucket.delete(entry)
+            self.size -= 1
         else:  # Not found
             raise KeyError('Key not found: {}'.format(key))
 
@@ -143,15 +146,21 @@ class HashTable(object):
         Best and worst case running time: ??? under what conditions? [TODO]
         Best and worst case space usage: ??? what uses this memory? [TODO]"""
         # If unspecified, choose new size dynamically based on current size
+        self.size = 0
         if new_size is None:
             new_size = len(self.buckets) * 2  # Double size
         # Option to reduce size if buckets are sparsely filled (low load factor)
         elif new_size is 0:
             new_size = len(self.buckets) / 2  # Half size
         # TODO: Get a list to temporarily hold all current key-value entries
-        self.buckets = [LinkedList() for i in range(new_size)]
+        old_values = self.items()
         # ...
         # TODO: Create a new list of new_size total empty linked list buckets
+        self.buckets = [LinkedList() for i in range(new_size)]
+
+        for key, value in old_values:
+        	self.set(key, value)
+
         # ...
         # TODO: Insert each key-value entry into the new list of buckets,
         # which will rehash them into a new bucket index based on the new size
