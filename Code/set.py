@@ -1,4 +1,4 @@
-from hashtable import Hashtable
+from hashtable import HashTable
 
 class HashSet(object):
 
@@ -57,14 +57,14 @@ class HashSet(object):
 		new_hash_set = HashSet()
 
 		for item in self.hash:
-			if !other_set.contains(item):
+			if other_set.contains(item) == False:
 				new_hash_set.add(item)
 
 	# Returns True if set is found in given set
 	def is_subset(self,other_set):
 	
 		for item in self.hash:
-			if !other_set.contains(item):
+			if other_set.contains(item) == False:
 				return False
 
 		return True
@@ -72,7 +72,7 @@ class HashSet(object):
 
 
 def test_hash_set():
-	pass
+	print("testing")
 
 
 
