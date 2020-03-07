@@ -1,10 +1,8 @@
-from hashtable import HashTable
-
 class HashSet(object):
 
 	def __init__(self, items=None):
 		'''Initialize this set as a Hashtable and adds items if any'''
-		self.hash = Hashtable()	# Set is a hashtable
+		self.hash = {}	# Set is a hashtable
 		self.size = 0 # Number of elements
 		# Adds the given items
 		if items is not None:
@@ -14,8 +12,9 @@ class HashSet(object):
 
 	# Adds given item is not found in set
 	def add(self, item):
-		self.hash[item] = True
-		self.size += 1
+		if self.contains(item) == False:
+			self.hash[item] = True
+			self.size += 1
 
 
 	# Returns true if item is found in set
@@ -37,7 +36,7 @@ class HashSet(object):
 			new_hash_set.add(item)
 
 
-		for item in other_set:
+		for item in other_set.hash.keys():
 			new_hash_set.add(item)
 			
 		return new_hash_set
@@ -46,11 +45,11 @@ class HashSet(object):
 	def intersection(self, other_set):
 		new_hash_set = HashSet()
 		
-		for item in other_set:
+		for item in other_set.hash.keys():
 			if item in self.hash:
 				new_hash_set.add(item)
 
-
+		return new_hash_set
 
 	# Returns a new set that contains the different elements in both sets
 	def difference(self, other_set):
@@ -59,6 +58,13 @@ class HashSet(object):
 		for item in self.hash:
 			if other_set.contains(item) == False:
 				new_hash_set.add(item)
+
+		for item in other_set.hash.keys():
+			if self.contains(item) == False:
+				new_hash_set.add(item)
+
+
+		return new_hash_set
 
 	# Returns True if set is found in given set
 	def is_subset(self,other_set):
