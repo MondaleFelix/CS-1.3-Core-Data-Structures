@@ -6,30 +6,11 @@ def contains(text, pattern):
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement contains here (iteratively and/or recursively)
 
-    starting_index = 0
+    # O(m * n)
 
-    i = 0
-    j = 0
+    index = find_index(text, pattern)
 
-    # B A N A N A S
-    # N A S
-
-    if len(text) == 0 or len(pattern) == 0:
-    	return True
-
-    while i < len(text):
-    	print(starting_index)
-    	if text[i] == pattern[j]:
-    		j += 1
-    		i += 1
-    		if j == len(pattern):
-    			return True
-    	else:
-    		starting_index += 1
-    		i = starting_index
-    		j = 0
-
-    return False
+    return index is not None
 
 
 
@@ -39,6 +20,9 @@ def find_index(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement find_index here (iteratively and/or recursively)
+
+    # O(m * n)
+
 
     starting_index = 0
 
@@ -71,6 +55,8 @@ def find_all_indexes(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement find_all_indexes here (iteratively and/or recursively)
+
+    # O(m * n)
 
     indicies = []
 

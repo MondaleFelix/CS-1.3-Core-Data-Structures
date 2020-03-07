@@ -14,31 +14,60 @@ class HashSet(object):
 
 	# Adds given item is not found in set
 	def add(self, item):
-		pass
+		self.hash[item] = True
+		self.size += 1
+
 
 	# Returns true if item is found in set
 	def contains(self, item):
-		pass
+		return item in self.hash
 
-	# Removes items if not found in set
+	# Removes items if found in set
 	def remove(self,item):
-		pass
+		if self.contains(item):
+			self.hash.pop(item)
+			self.size -= 1
+
 
 	# Returns a new set that contains all elements from both sets
-	def union(self, set):
-		pass
+	def union(self, other_set):
+		new_hash_set = HashSet()
+
+		for item in self.hash:
+			new_hash_set.add(item)
+
+
+		for item in other_set:
+			new_hash_set.add(item)
+			
+		return new_hash_set
 
 	# Returns a new set that contains the common items in both sets
-	def intersection(self, set):
-		pass
+	def intersection(self, other_set):
+		new_hash_set = HashSet()
+		
+		for item in other_set:
+			if item in self.hash:
+				new_hash_set.add(item)
+
+
 
 	# Returns a new set that contains the different elements in both sets
-	def difference(self, set):
-		pass
+	def difference(self, other_set):
+		new_hash_set = HashSet()
+
+		for item in self.hash:
+			if !other_set.contains(item):
+				new_hash_set.add(item)
 
 	# Returns True if set is found in given set
-	def is_subset(self,set):
-		pass
+	def is_subset(self,other_set):
+	
+		for item in self.hash:
+			if !other_set.contains(item):
+				return False
+
+		return True
 
 
 
